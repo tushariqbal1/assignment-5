@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- DaisyUi && tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <title>Document</title>
+
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
 </head>
+
 <body>
-    hello world
+    <header>
+        <nav class="flex justify-between items-center max-w-full px-8 mx-auto py-5 border-b-2 border-gray-300">
+            <div class="left flex items-center gap-1">
+                <img class="w-[40px]" src="../assets/github-logo.png" alt="">
+                <h2>GitHub Issues Tracker</h2>
+            </div>
+
+            <div class="right">
+                <div class="join">
+                    <div class="flex gap-4">
+                        <label class="input validator join-item">
+                            <i class="fa-brands fa-sistrix text-gray-400"></i>
+                            <input type="text" placeholder="Search issues..." required />
+                        </label>
+                        <div class="validator-hint hidden">Enter valid email address</div>
+                        <button class="btn btn-primary join-item w-[130px]"><i class="fa-solid fa-plus"></i> New Issue</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 </body>
+
 </html>
