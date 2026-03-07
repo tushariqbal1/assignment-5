@@ -30,7 +30,7 @@
 
 <body>
     <header>
-        <nav class="flex justify-between items-center max-w-full px-8 mx-auto py-5 border-b-2 border-gray-300">
+        <nav class="flex justify-between items-center max-w-full px-8 mx-auto py-5 border-b-1 border-gray-300">
             <div class="left flex items-center gap-1">
                 <img class="w-[40px]" src="../assets/github-logo.png" alt="">
                 <h2>GitHub Issues Tracker</h2>
@@ -41,15 +41,78 @@
                     <div class="flex gap-4">
                         <label class="input validator join-item">
                             <i class="fa-brands fa-sistrix text-gray-400"></i>
-                            <input type="text" placeholder="Search issues..." required />
+                            <input id="search-input" type="text" placeholder="Search issues..." required />
                         </label>
                         <div class="validator-hint hidden">Enter valid email address</div>
-                        <button class="btn btn-primary join-item w-[130px]"><i class="fa-solid fa-plus"></i> New Issue</button>
+                        <button id="search-btn" class="btn btn-primary join-item w-[130px]"><i
+                                class="fa-solid fa-plus"></i> New Issue</button>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- Tab section -->
+    <div class="px-10 mt-6">
+        <div class="flex gap-2">
+            <!-- <a role="tab" class="tab tab-active" data-status="all">All</a>
+            <a role="tab" class="tab" data-status="open">Open</a>
+            <a role="tab" class="tab" data-status="closed">Closed</a> -->
+
+            <button class="btn btn-primary active w-[115px]" data-status="all">All</button>
+            <button class="btn btn-primary btn-soft w-[115px]" data-status="open">Open</button>
+            <button class="btn btn-primary btn-soft w-[115px]" data-status="closed">Closed</button>
+        </div>
+    </div>
+
+    <!-- issue -->
+    <div class="flex justify-between items-center px-10 mt-4 ">
+        <div class="flex gap-2 items-center">
+            <div class="img bg-gray-200 p-1 rounded-full w-[30px] h-[30px]">
+                <img src="../assets/Aperture.png" alt="">
+            </div>
+            <div>
+                <h2 class="text-[#1F2937] font-semibold text-xl">0 Issues</h2>
+                <p class="text-[#64748B]">Track and manage your project issues</p>
+            </div>
+        </div>
+        <div class="space-x-4 text-sm">
+            <span class="text-green-600 font-semibold"><i class="fa-solid fa-circle"></i> Open</span>
+            <span class="text-purple-600 font-semibold"><i class="fa-solid fa-circle"></i> Closed</span>
+        </div>
+
+    </div>
+
+    <!-- loader -->
+    <div id="loader" class="flex justify-center mt-20 hidden">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+    </div>
+
+    <!-- issue card -->
+    <div id="issu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-10 mt-6"></div>
+
+    <!-- modal -->
+    <dialog id="issue-modal" class="modal">
+
+        <div class="modal-box">
+
+            <h3 id="modal-title" class="text-lg font-bold"></h3>
+
+            <p id="modal-description" class="py-2"></p>
+
+            <div id="modal-details" class="text-sm space-y-1"></div>
+
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+
+        </div>
+
+    </dialog>
+
+    <script src="../script/home.js"></script>
 </body>
 
 </html>
