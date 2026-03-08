@@ -137,10 +137,10 @@ function openModal(issue) {
 
         <div class="flex gap-2 mb-6">
             <span class="flex items-center gap-1 bg-red-50 text-red-400 border border-red-100 px-2 py-0.5 rounded-md text-[10px] font-bold">
-                <i class="fa-solid fa-bug"></i> BUG
+               <i class="fa-solid fa-bug-slash"></i> BUG
             </span>
             <span class="flex items-center gap-1 bg-yellow-50 text-yellow-600 border border-yellow-100 px-2 py-0.5 rounded-md text-[10px] font-bold">
-                <i class="fa-solid fa-circle-info"></i> HELP WANTED
+                <i class="fa-solid fa-handshake-angle"></i> HELP WANTED
             </span>
         </div>
 
@@ -164,7 +164,7 @@ function openModal(issue) {
 
 
     const closeBtn = modalAction.querySelector('button');
-    closeBtn.className = "btn bg-indigo-600 hover:bg-indigo-700 text-white border-none px-8";
+    closeBtn.className = "btn btn-primary btn-soft border border-primary px-8";
 
     document.getElementById('issue-modal').showModal();
 }
