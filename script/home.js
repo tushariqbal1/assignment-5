@@ -1,3 +1,4 @@
+
 const api = 'https://phi-lab-server.vercel.app/api/v1/lab/issues';
 
 const container = document.getElementById('issue-container')
@@ -85,10 +86,10 @@ function displayIssue(issues) {
 
                 <div class="flex flex-wrap gap-2 mb-4">
                     <span class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-bold uppercase ${labelStyles['bug']}">
-                        <i class="fa-solid fa-bug text-[8px]"></i> BUG
+                        <i class="fa-solid fa-bug-slash text-[8px]"></i> BUG
                     </span>
                     <span class="flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-bold uppercase ${labelStyles['help wanted']}">
-                        <i class="fa-solid fa-circle-info text-[8px]"></i> HELP WANTED
+                        <i class="fa-solid fa-handshake-angle text-[8px]"></i> HELP WANTED
                     </span>
                 </div>
 
@@ -174,9 +175,9 @@ document.querySelectorAll('.tab-btn').forEach(tab => {
 
     tab.addEventListener('click', () => {
 
-        document.querySelectorAll('.tab-btn').forEach(tushar => {
-            tushar.classList.remove('btn-primary');
-            tushar.classList.add('btn-outline');
+        document.querySelectorAll('.tab-btn').forEach(t => {
+            t.classList.remove('btn-primary');
+            t.classList.add('btn-outline');
         });
 
         tab.classList.remove('btn-outline');
