@@ -9,95 +9,46 @@ let allIssues = []
 
 async function fetchIssues() {
 
-try{
+    try {
 
-loader.classList.remove('hidden')
+        loader.classList.remove('hidden')
 
-const res = await fetch(api)
-const data = await res.json()
+        const res = await fetch(api)
+        const data = await res.json()
 
-allIssues = data.data || []
+        allIssues = data.data || []
 
-displayIssue(allIssues)
+        displayIssue(allIssues)
+
+    }
+
+    catch (error) {
+        console.log("Error fetching issues:", error)
+    }
+
+    finally {
+        loader.classList.add('hidden')
+    }
 
 }
 
-catch(error){
-console.log("Error fetching issues:",error)
-}
-
-finally{
-loader.classList.add('hidden')
-}
-
-}
 
 
-// function displayIssue(issues){
-
-// container.innerHTML=''
-
-// issueCount.innerText = `${issues.length} Issues`
-
-// issues.forEach(issue=>{
-
-// const border =
-// issue.status === 'open'
-// ? 'border-t-4 border-green-500'
-// : 'border-t-4 border-purple-500'
-
-// const card = document.createElement('div')
-
-// card.className = `card bg-base-100 shadow ${border} cursor-pointer`
-
-// card.innerHTML=`
-
-// <div class="card-body">
-
-// <h2 class="card-title text-sm">${issue.title}</h2>
-
-// <p class="text-xs text-gray-500">${issue.description}</p>
-
-// <div class="text-xs space-y-1 mt-2">
-
-// <p><b>Status:</b> ${issue.status}</p>
-
-// <p><b>Category:</b> ${issue.category}</p>
-
-// <p><b>Author:</b> ${issue.author}</p>
-
-// <p><b>Priority:</b> ${issue.priority}</p>
-
-// <p><b>Label:</b> ${issue.label}</p>
-
-// </div>
-
-// </div>
-
-// `
-
-// card.addEventListener('click',()=>openModal(issue))
-
-// container.appendChild(card)
-
-// })
-
-// }
 
 function displayIssue(issues) {
     container.innerHTML = '';
     issueCount.innerText = `${issues.length} Issues`;
 
     issues.forEach(issue => {
-        // 1. Determine Top Border and Status Icon
+        // 1. card er top border k design korte hobe
         const isOpen = issue.status?.toLowerCase() === 'open';
         const borderClass = isOpen ? 'border-t-4 border-green-500' : 'border-t-4 border-purple-500';
-        
-        const statusIcon = isOpen 
+
+        const statusIcon = isOpen
             ? '<div class="w-6 h-6 flex items-center justify-center rounded-full border-2 border-dashed border-green-400 text-green-400 text-[10px]"><i class="fa-solid fa-circle-notch"></i></div>'
             : '<div class="w-6 h-6 flex items-center justify-center rounded-full border-2 border-purple-400 text-purple-400 text-[10px]"><i class="fa-solid fa-check"></i></div>';
 
-        // 2. Map Priority Styles
+        // 2.priority k map korte hobe
         const priorityStyles = {
             high: 'bg-red-50 text-red-400 border border-red-100',
             medium: 'bg-orange-50 text-orange-400 border border-orange-100',
@@ -105,7 +56,7 @@ function displayIssue(issues) {
         };
         const pStyle = priorityStyles[issue.priority?.toLowerCase()] || 'bg-gray-50';
 
-        // 3. Map Label Styles (Bug, Enhancement, etc.)
+        // 3. label k map korte hobe
         const labelStyles = {
             bug: 'bg-red-50 text-red-500 border border-red-200',
             enhancement: 'bg-green-50 text-green-600 border border-green-200',
@@ -154,37 +105,16 @@ function displayIssue(issues) {
 }
 
 
-// function openModal(issue){
-
-// document.getElementById('modal-title').innerText = issue.title
-// document.getElementById('modal-description').innerText = issue.description
-
-// document.getElementById('modal-details').innerHTML=`
-
-// <p><b>Status:</b> ${issue.status || 'Open'}</p>
-
-// <p><b>Category:</b> ${issue.category}</p>
-// <p><b>Author:</b> ${issue.author}</p>
-// <p><b>Priority:</b> ${issue.priority}</p>
-// <p><b>Label:</b> ${issue.label}</p>
-// <p><b>Created:</b> ${issue.createdAt}</p>
-
-// `
-
-// document.getElementById('issue-modal').showModal()
-
-// }
-
 function openModal(issue) {
-    // 1. Set the Title and Description
+    // 1. prothom e title set korte hobe
     document.getElementById('modal-title').innerText = issue.title;
     document.getElementById('modal-description').innerText = issue.description;
 
-    // 2. Define dynamic styles based on status and priority
+    // 2. priority k dynamic korte hobe 
     const isOpen = issue.status?.toLowerCase() === 'open';
     const statusBg = isOpen ? 'bg-green-500' : 'bg-purple-600';
-    
-    // Priority badge colors
+
+    // Priority k design korte hobe
     const priorityColors = {
         high: 'bg-red-500',
         medium: 'bg-yellow-500',
@@ -192,7 +122,7 @@ function openModal(issue) {
     };
     const pColor = priorityColors[issue.priority?.toLowerCase()] || 'bg-gray-500';
 
-    // 3. Update the modal details with the new grid layout
+    // 3. modal k dhore design korte hobe
     document.getElementById('modal-details').innerHTML = `
         <div class="flex items-center gap-2 text-sm text-gray-400 mb-4">
             <span class="${statusBg} text-white px-3 py-0.5 rounded-full text-xs font-medium">
@@ -227,11 +157,11 @@ function openModal(issue) {
         </div>
     `;
 
-    // 4. Customize the Close button container to align right
+    // 4. close btn k dhoro
     const modalAction = document.querySelector('.modal-action');
     modalAction.className = "modal-action flex justify-end mt-6";
-    
-    // Ensure the button inside uses the purple color from the image
+
+
     const closeBtn = modalAction.querySelector('button');
     closeBtn.className = "btn bg-indigo-600 hover:bg-indigo-700 text-white border-none px-8";
 
@@ -244,9 +174,9 @@ document.querySelectorAll('.tab-btn').forEach(tab => {
 
     tab.addEventListener('click', () => {
 
-        document.querySelectorAll('.tab-btn').forEach(t => {
-            t.classList.remove('btn-primary');
-            t.classList.add('btn-outline');
+        document.querySelectorAll('.tab-btn').forEach(tushar => {
+            tushar.classList.remove('btn-primary');
+            tushar.classList.add('btn-outline');
         });
 
         tab.classList.remove('btn-outline');
@@ -267,26 +197,26 @@ document.querySelectorAll('.tab-btn').forEach(tab => {
 
 
 
-document.getElementById('search-btn').addEventListener('click', async()=>{
+document.getElementById('search-btn').addEventListener('click', async () => {
 
-const text = document.getElementById('search-input').value
+    const text = document.getElementById('search-input').value
 
-loader.classList.remove('hidden')
+    loader.classList.remove('hidden')
 
-const res = await fetch(
-`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`
-)
+    const res = await fetch(
+        `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`
+    )
 
-const data = await res.json()
+    const data = await res.json()
 
-displayIssue(data.data || [])
+    displayIssue(data.data || [])
 
-loader.classList.add('hidden')
+    loader.classList.add('hidden')
 
 })
 
 
 
-document.addEventListener("DOMContentLoaded",()=>{
-fetchIssues()
+document.addEventListener("DOMContentLoaded", () => {
+    fetchIssues()
 })
