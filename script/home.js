@@ -23,9 +23,7 @@ async function fetchIssues() {
 
     }
 
-    catch (error) {
-        console.log("Error fetching issues:", error)
-    }
+
 
     finally {
         loader.classList.add('hidden')
