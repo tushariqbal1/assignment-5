@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <!-- Tailwind + DaisyUI -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+
+    <title>GitHub Issues Tracker</title>
+
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="flex justify-between flex-col gap-8 md:flex-row items-center px-8 py-5 border-b border-gray-300">
+
+            <div class="flex items-center gap-2">
+                <img class="w-[40px]" src="./assets/github-logo.png">
+                <h2 class="font-semibold">GitHub Issues Tracker</h2>
+            </div>
+
+            <div class="flex gap-4">
+
+                <label class="input input-bordered flex items-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+                    <input id="search-input" type="text" placeholder="Search issues...">
+                </label>
+
+                <button id="search-btn" class="btn btn-primary">
+                    <i class="fa-solid fa-plus"></i> New Issue
+                </button>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- Tabs -->
+    <div class="px-10 mt-6">
+        <div class="flex gap-4">
+
+            <button class="btn btn-primary tab-btn w-[120px]" data-status="all">
+                All
+            </button>
+
+            <button class="btn btn-outline tab-btn w-[120px]" data-status="open">
+                Open
+            </button>
+
+            <button class="btn btn-outline tab-btn w-[120px]" data-status="closed">
+                Closed
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- Issue count -->
+    <div class="flex flex-col md:flex-row md:justify-between items-center gap-4 px-4 sm:px-6 md:px-10 mt-4">
+
+        <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-3">
+            <div class="bg-gray-200 p-1 rounded-full w-[30px] h-[30px] flex items-center justify-center">
+                <img class="" src="./assets/Aperture.png">
+            </div>
+
+            <div>
+                <h2 id="issue-count" class="text-lg sm:text-xl font-semibold">0 Issues</h2>
+                <p class="text-gray-500 text-sm sm:text-base">Track and manage your project issues</p>
+            </div>
+        </div>
+
+        <div class="flex gap-4 text-sm sm:text-base">
+            <span class="text-green-600 font-semibold flex items-center gap-1"><i class="fa-solid fa-circle text-xs"></i> Open</span>
+            <span class="text-purple-600 font-semibold flex items-center gap-1"><i class="fa-solid fa-circle text-xs"></i> Closed</span>
+        </div>
+
+    </div>
+
+
+    <!-- Loader -->
+    <div id="loader" class="flex justify-center mt-20 hidden">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+    </div>
+
+
+    <!-- Issues container -->
+    <div id="issue-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-10 mt-6">
+    </div>
+
+
+    <!-- Modal -->
+    <dialog id="issue-modal" class="modal">
+
+        <div class="modal-box">
+
+            <h3 id="modal-title" class="text-lg font-bold"></h3>
+
+            <p id="modal-description" class="py-2"></p>
+
+            <div id="modal-details" class="text-sm space-y-1"></div>
+
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn btn-soft btn-primary">Close</button>
+                </form>
+            </div>
+
+        </div>
+
+    </dialog>
+
+
+    <script src="../script/home.js"></script>
+
+
+   
+
+
+</body>
+
+</html>
